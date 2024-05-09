@@ -17,15 +17,42 @@ main {
     background-color: white;
 }
 
-.box {
+.box,
+.start-screen {
     max-width: 100%;
     width: 100%;
+}
+
+.start-screen {
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4%;
+}
+
+.start-screen h1 {
+    font-size: 50px;
+    margin-top: 0;
+    margin-bottom: 5%;
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+.start-screen button {
+    width: 25%;
+    padding: 3%;
+    border: black 1px solid;
+    border-radius: 5%;
+    font-size: 100%;
+    text-transform: uppercase;
 }
 
 .stats,
 .options,
 .monster-stats,
-.game-state {
+.game-state,
+.monster-attack {
     padding: 1%;
     border: black 1px solid;
 }
@@ -45,12 +72,34 @@ main {
     color: white;
 }
 
-button {
-    background-color: orange;
+
+.options button {
+    background-color: #FFA500;
     border: black 1px solid;
     border-radius: 5px;
 }
 
+.options button:hover {
+    background-color: #e29300;
+}
+
+.options button:active {
+    background-color: #c58000;
+}
+
+.monster-attack {
+    background-color: blueviolet;
+    color: white;
+}
+
+.monster-attack p {
+    margin: 0;
+}
+
 b {
     margin-right: 10px;
+}
+
+.hidden {
+    display: none;
 }

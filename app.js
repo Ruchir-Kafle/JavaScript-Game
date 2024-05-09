@@ -21,7 +21,13 @@ const monsterHealthBold = monsterStatsBox.querySelector(".monster-health-bold");
 
 // Selecting the box that renders the game state
 const gameStateBox = mainBox.querySelector(".game-state");
-const gameStateSpan = gameStateBox.querySelector(".game-state-span");
+
+// Selecting the monster attack box
+const monsterAttackBox = mainBox.querySelector(".monster-attack");
+
+// Selecting the start screen and the start button
+const startBox = document.querySelector(".start-screen");
+const startButton = startBox.querySelector("button");
 
 // Objects
 // Player object
@@ -29,7 +35,7 @@ const player = {
     health: 100,
     XP: 0,
     gold: 0,
-    damage: 10
+    damage: 30
 };
 
 // Monster objects
@@ -90,9 +96,9 @@ function randomMonster() {
 
 // Function that updates the monster display
 function monsterUpdate(monster) {
-    monsterNameBold.innerHTML = monster.name;
-    monsterHealthBold.innerHTML = monster.health;
-    gameStateSpan.innerHTML = `You are fighting a ${monster.name.toLowerCase()}`;
+        monsterNameBold.innerHTML = monster.name;
+        monsterHealthBold.innerHTML = monster.health;
+        gameStateBox.innerHTML = `<span>You are fighting a ${monster.name.toLowerCase()}</span>`;
 };
 
 // Function that updates the player display
@@ -111,14 +117,26 @@ monsterUpdate(currentMonster);
 // Event listeners
 attackButton.addEventListener("click", () => {
     currentMonster.health -= player.damage;
-    
+
     if (currentMonster.health <= 0) {
         currentMonster.health = currentMonster.maxHealth;
         player.gold += currentMonster.maxHealth / 50;
         player.XP += currentMonster.maxHealth / 10;
+        monsterAttackBox.innerHTML = ``
         currentMonster = randomMonster();
     };
+
+    let monsterAttack = currentMonster.attacks[Math.floor(Math.random() * currentMonster.attacks.length)]
+    player.health -= monsterAttack.damage
+
+    const attackParagraph = `<p>The ${currentMonster.name} attacked you with its ${monsterAttack.title} attack</p>`
+    monsterAttackBox.innerHTML = attackParagraph
     
     playerUpdate()
     monsterUpdate(currentMonster);
+});
+
+startButton.addEventListener("click", () => {
+    startBox.classList.add("hidden")
+    mainBox.classList.remove("hidden")
 });
