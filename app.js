@@ -34,13 +34,20 @@ const startButton = startBox.querySelector("button");
 // Objects
 // Player object
 const player = {
-    health: 100,
+    defaultHealth: 100,
     maxHealth: 100,
+    health: 100,
+    defaultEvasiveness: 1,
     evasiveness: 1,
+    defaultLevels: 0,
     levels: 0,
+    defaultXP: 0,
     XP: 0,
+    defaultXPRequirement: 1,
     XPRequirement: 1,
+    defaultGold: 0,
     gold: 0,
+    defaultDamage: 30,
     damage: 30
 };
 
@@ -162,14 +169,14 @@ function playerUpdate() {
 // Fuction that controls what happens upon the player's death
 function playerDeath(currentMonster) {
     if (player.health <= 0) {
-        player.maxHealth = 100;
-        player.health = player.maxHealth;
-        player.gold = 0;
-        player.levels = 0;
-        player.XP = 0;
-        player.damage = 30;
-        player.XPRequirement = 1;
-        player.evasiveness = 1;
+        player.maxHealth = player.defaultHealth;
+        player.health = player.defaultHealth;
+        player.gold = player.defaultGold;
+        player.levels = player.defaultLevels;
+        player.XP = player.defaultXP;
+        player.damage = player.defaultDamage;
+        player.XPRequirement = player.defaultXPRequirement;
+        player.evasiveness = player.defaultEvasiveness;
         currentMonster.health = currentMonster.maxHealth;
         moveBox.classList.add("hidden");
 
